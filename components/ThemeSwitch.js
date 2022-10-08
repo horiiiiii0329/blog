@@ -7,6 +7,7 @@ const ThemeSwitch = () => {
 
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), [])
+  useEffect(() => setTheme('dark'), [])
 
   return (
     <button
