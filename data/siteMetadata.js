@@ -1,6 +1,6 @@
 const siteMetadata = {
   title: 'biogtabfのブログ',
-  author: 'Horinouchi Hikaru',
+  author: 'biogtabf hori',
   headerTitle: 'Biogtabfの技術？ブログ',
   description: '都内在住SaaSエンジニアが雑多なことをいろいろと呟いていくブログです。',
   language: 'ja-JP',

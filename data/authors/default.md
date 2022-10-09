@@ -1,16 +1,16 @@
 ---
-name: Tails Azimuth
+name: biogtabf
 avatar: /static/images/avatar.png
-occupation: Professor of Atmospheric Science
-company: Stanford University
-email: address@yoursite.com
+occupation: SaaSエンジニア(フルスタック？)
+company: 都内在住
+email: hori0329@gmail.com
 twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+linkedin: https://www.linkedin.com/in/hikaru-horinouchi-61885121a/
+github: https://github.com/horiiiiii0329
 ---
 
-Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His research interests includes complexity modelling of tailwinds, headwinds and crosswinds.
+biogtabf は都内在住の SaaS エンジニアです。主に仕事では Nuxt と Spring Boot を使っています。
+趣味で友人のスタートアップで Solidity を書いています。🔮  
+好きなことは辛ラーメンとライフのチルド餃子を食べることです。
 
-He leads the clean energy group which develops 3D air pollution-climate models, writes differential equation solvers, and manufactures titanium plated air ballons. In his free time he bakes raspberry pi.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+これまではたくさんの技術ブログ等に助けていただきましたが、今度は私がコミニティに還元できればなとの思いでブログを作ってみました。みなさんのお役に立ちつつ、息抜きできるような面白い記事になれば幸いです。
