@@ -4,6 +4,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { useState } from 'react'
 import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
+import { useRouter } from 'next/router'
 
 export default function ListLayout({ posts, title, initialDisplayPosts = [], pagination }) {
   const [searchValue, setSearchValue] = useState('')
@@ -12,6 +13,8 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
   })
 
+  const router = useRouter()
+
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
     initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
@@ -19,16 +22,16 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+        <div className="max-width pb-2 dark:divide-gray-700">
+          <h1 className="text-sm leading-9 text-gray-900 dark:text-gray-100 sm:text-base sm:leading-10 md:text-lg md:leading-14">
             {title}
           </h1>
-          <div className="relative max-w-lg">
+          {/* <div className="relative max-w-lg">
             <input
               aria-label="Search articles"
               type="text"
               onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search articles"
+              placeholder=""
               className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
             />
             <svg
@@ -45,7 +48,30 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-          </div>
+          </div> */}
+          <nav className="flex justify-center space-x-28 pt-4">
+            <Link
+              className="block h-8 border-gray-500 text-gray-300"
+              href={`/blog/fadfadfa`}
+              style={router.pathname === '/blog' ? { borderBottom: '3px solid gray' } : ''}
+            >
+              biogtabf
+            </Link>
+            <Link
+              className="h-8 border-gray-500  text-gray-300"
+              href={`/blog/fadfadfa`}
+              style={router.pathname === '/blog' ? { borderBottom: '3px solid gray' } : ''}
+            >
+              qiita
+            </Link>
+            <Link
+              className="h-8 border-gray-500  text-gray-300"
+              href={`/blog/adfadfad`}
+              style={router.pathname === '/blog' ? { borderBottom: '3px solid gray' } : ''}
+            >
+              note
+            </Link>
+          </nav>
         </div>
         <ul>
           {!filteredBlogPosts.length && 'No posts found.'}

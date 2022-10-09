@@ -29,7 +29,7 @@ export default function Home({ posts }) {
             {siteMetadata.description}
           </p>
         </div>
-        <div className="container py-12">
+        <div className="container p-12">
           <ul className="grid gap-9 md:grid-cols-2 md:gap-24">
             {!posts.length && '投稿がまだされていません'}
             {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
@@ -82,7 +82,7 @@ export default function Home({ posts }) {
                               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                               aria-label={`Read "${title}"`}
                             >
-                              Read more &rarr;
+                              続きを読む &rarr;
                             </Link>
                           </div>
                         </div>
