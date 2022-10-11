@@ -14,6 +14,7 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
   })
 
   const router = useRouter()
+  console.log(router.pathname)
 
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
@@ -52,65 +53,82 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
           <nav className="flex justify-center space-x-28 pt-4">
             <Link
               className="block h-8 border-gray-500 text-gray-300"
-              href={`/blog/fadfadfa`}
-              style={router.pathname === '/blog' ? { borderBottom: '3px solid gray' } : ''}
+              href={`/blog`}
+              style={router.pathname === '/blog' ? { borderBottom: '3px solid gray' } : undefined}
             >
               biogtabf
             </Link>
             <Link
               className="h-8 border-gray-500  text-gray-300"
-              href={`/blog/fadfadfa`}
-              style={router.pathname === '/blog' ? { borderBottom: '3px solid gray' } : ''}
+              href={`/blog/qiita`}
+              style={
+                router.pathname.includes('/blog/qiita')
+                  ? { borderBottom: '3px solid gray' }
+                  : undefined
+              }
             >
               qiita
             </Link>
             <Link
               className="h-8 border-gray-500  text-gray-300"
-              href={`/blog/adfadfad`}
-              style={router.pathname === '/blog' ? { borderBottom: '3px solid gray' } : ''}
+              href={`/blog/note`}
+              style={
+                router.pathname.includes('/blog/note')
+                  ? { borderBottom: '3px solid gray' }
+                  : undefined
+              }
             >
               note
             </Link>
           </nav>
         </div>
-        <ul>
-          {!filteredBlogPosts.length && 'No posts found.'}
-          {displayPosts.map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
-            return (
-              <li key={slug} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date)}</time>
-                    </dd>
-                  </dl>
-                  <div className="space-y-3 xl:col-span-3">
-                    <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
-                          {title}
-                        </Link>
-                      </h3>
-                      <div className="flex flex-wrap">
-                        {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
-                        ))}
+        <div className="container p-12">
+          <ul className="grid gap-9 md:grid-cols-2 md:gap-24 ">
+            {!filteredBlogPosts.length && '投稿がまだありません。🎈'}
+            {displayPosts.map((frontMatter) => {
+              const { slug, date, title, summary, tags } = frontMatter
+              return (
+                <li
+                  key={slug}
+                  className="rounded-lg border-2 border-gray-200 border-opacity-60 px-3 py-4 dark:border-gray-700"
+                >
+                  <article className="block h-full flex-col overflow-hidden rounded-lg">
+                    <dl>
+                      <dt className="sr-only">Published on</dt>
+                      <dd className="font-sm text-base leading-6 text-gray-500 dark:text-gray-400">
+                        <time dateTime={date}>{formatDate(date)}</time>
+                      </dd>
+                    </dl>
+                    <div className="space-y-3 xl:col-span-3">
+                      <div>
+                        <h3 className="text-2xl font-bold leading-8 tracking-tight">
+                          <Link href={`/blog/${slug}`} className="text-gray-900 dark:text-gray-100">
+                            {title}
+                          </Link>
+                        </h3>
+                        <div className="flex flex-wrap">
+                          {tags.map((tag) => (
+                            <Tag key={tag} text={tag} />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                        {summary}
                       </div>
                     </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {summary}
-                    </div>
-                  </div>
-                </article>
-              </li>
-            )
-          })}
-        </ul>
+                  </article>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
       {pagination && pagination.totalPages > 1 && !searchValue && (
-        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        <Pagination
+          currentPage={pagination.currentPage}
+          totalPages={pagination.totalPages}
+          type={router.pathname}
+        />
       )}
     </>
   )
