@@ -3,7 +3,7 @@ title: Node.jsとTypeScriptを使ってTwitterボットを作成した。
 date: '2022-10-18'
 tags: ['node', 'code']
 draft: false
-summary: Example of a markdown file with code blocks and syntax highlighting
+summary: Node.js, Typescriptを使ってTwitterBotを作成します。所要時間は1時間ほどです。
 image: /static/images/twitter-node.jpg
 ---
 
