@@ -1,6 +1,18 @@
 import Link from '@/components/Link'
+import { useRouter } from 'next/router'
 
-export default function Pagination({ totalPages, currentPage }) {
+export default function Pagination({ totalPages, currentPage, type }) {
+  const router = useRouter()
+  let routerPathName = ''
+  if (router.pathname.includes('qiita')) {
+    routerPathName = 'qiita'
+  }
+  if (router.pathname.includes('note')) {
+    routerPathName = 'note'
+  }
+  const path = type !== '/blog' ? routerPathName + '/' : ''
+  const path1 = type !== '/blog' ? '/' + routerPathName : ''
+
   const prevPage = parseInt(currentPage) - 1 > 0
   const nextPage = parseInt(currentPage) + 1 <= parseInt(totalPages)
 
@@ -9,12 +21,14 @@ export default function Pagination({ totalPages, currentPage }) {
       <nav className="flex justify-between">
         {!prevPage && (
           <button rel="previous" className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
+            前ページ
           </button>
         )}
         {prevPage && (
-          <Link href={currentPage - 1 === 1 ? `/blog/` : `/blog/page/${currentPage - 1}`}>
-            <button rel="previous">Previous</button>
+          <Link
+            href={currentPage - 1 === 1 ? `/blog${path1}` : `/blog/${path}page/${currentPage - 1}`}
+          >
+            <button rel="previous">前ページ</button>
           </Link>
         )}
         <span>
@@ -26,8 +40,8 @@ export default function Pagination({ totalPages, currentPage }) {
           </button>
         )}
         {nextPage && (
-          <Link href={`/blog/page/${currentPage + 1}`}>
-            <button rel="next">Next</button>
+          <Link href={`/blog/${path}page/${currentPage + 1}`}>
+            <button rel="next">次ページ</button>
           </Link>
         )}
       </nav>
