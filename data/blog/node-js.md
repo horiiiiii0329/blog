@@ -77,8 +77,7 @@ code . //vscodeの起動
 ルートテーブルに src というフォルダーを作り、その中に index.ts を作成します。
 src に app というフォルダーを作ります。その後、tsconfig.json をいじります。
 
-```json
-/tsconfig.json
+```json:tsconfig.json
 {
 	"exclude": ["./node_modules"],
 	"compilerOptions": {
@@ -101,7 +100,7 @@ src に app というフォルダーを作ります。その後、tsconfig.json 
 
 package.json をいじる。node と npm のバージョンはお使いの Ver に変えてください。
 
-```json
+```json:package.json
 {
   "name": "twitterbot",
   "version": "1.0.0",
@@ -141,7 +140,7 @@ config 周りを作成していきます。まずは config フォルダーを�
 default.json の中身を下記のようにいじります。
 こちらのファイルは config パッケージのお作法的なものになります。詳しくは[こちら](https://qiita.com/toshiyukihina/items/8180793bc40df3639cc6)にて詳しく紹介されているのでご参考頂ければと思います。
 
-```js
+```js:default.json
 {
  "Twit": {
 	"consumerKey": "TWIT_CONSUMER_KEY",
@@ -159,7 +158,7 @@ default.json の中身を下記のようにいじります。
 src/app/に config フォルダーを作ります。その後、config-service.ts を作成します。
 下記のコードをコピペします。
 
-```js
+```js:config-service.ts
 import "reflect-metadata";　// inversifyパッケージをつかうためのお作法的なもの
 import { injectable } from 'inversify';
 import config from 'config'; //configパッケージを使用する
@@ -197,7 +196,7 @@ export class ConfigManager implements IConfigManager {
 src/app/フォルダー内に twitter フォルダーを作成し、twitter-service.ts を作成します。
 下記のコードをコピペします。
 
-```js
+```js:twitter-service.ts
 import "reflect-metadata";
 import { inject, injectable } from 'inversify';
 import { ConfigManagerLocator, IConfigManager } from './../config/config-service';
@@ -242,7 +241,7 @@ public WatchToFilterStream(params: Twit.Params | undefined): void {
 src/app/フォルダー内に twitter-bot フォルダーを作成し、twitter-bot.ts を作成します。
 下記のコードをコピペします。
 
-```js
+```js:twitter-bot.ts
 import "reflect-metadata";
 import { TwitterServiceLocator } from '../twitter/twitter-service';
 import { inject, injectable } from "inversify";
@@ -272,7 +271,7 @@ export class TwitterBot implements ITwitterBot {
 src/app/フォルダー内に dependency-injection フォルダーを作成し、dependency-injection.ts を作成します。
 下記のコードをコピペします。
 
-```js
+```js:dependency-injection.ts
 import 'reflect-metadata'
 import { TwitterBot, TwitterBotLocator } from './../twitter-bot/twitter-bot'
 import {
@@ -302,7 +301,7 @@ export default container
 
 最初のほうに作った index.ts に下記のコードをコピーします。
 
-```js
+```js:index.ts
 import 'reflect-metadata'
 import { ITwitterBot, TwitterBot, TwitterBotLocator } from './app/twitter-bot/twitter-bot'
 import container from './app/dependency-injection/dependency-injection'
@@ -315,7 +314,8 @@ twitterBot.retweetFilteredUser('elonmusk') //イーロンマスクさんのID
 
 ## 3 デプロイ
 
-デプロイはお好きなものなんでも大丈夫です。環境変数を下記のように設定していただけるとすぐにためしていただくこともできるかと思います。twitter の API キーやコンシューマーキーの取り方は他記事がたくさんございますのでそちらを参考くださればと思います。
+デプロイはお好きなものなんでも大丈夫です。環境変数を下記のように設定していただけるとすぐにためしていただくこともできるかと思います。  
+twitter の API キーやコンシューマーキーの取り方は他記事がたくさんございますのでそちらを参考くださればと思います。
 
 ```js
 NPM_CONFIG_PRODUCTION=true.
