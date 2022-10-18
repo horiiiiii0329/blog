@@ -33,7 +33,7 @@ export default function Home({ posts }) {
           <ul className="grid gap-9 md:grid-cols-2 md:gap-24">
             {!posts.length && '投稿がまだされていません'}
             {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-              const { slug, date, title, summary, tags } = frontMatter
+              const { slug, date, title, summary, tags, image } = frontMatter
               return (
                 <li
                   key={slug}
@@ -42,8 +42,8 @@ export default function Home({ posts }) {
                   <article className="block h-full flex-col overflow-hidden rounded-lg">
                     <div className="space-y-2  xl:items-baseline xl:space-y-0">
                       <Image
-                        alt="gwqegwqge"
-                        src="/static/images/time-machine.jpg"
+                        alt=""
+                        src={image}
                         className="md:h-90 lg:h-120 object-cover object-center"
                         width={800}
                         height={250}

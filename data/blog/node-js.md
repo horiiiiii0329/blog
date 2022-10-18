@@ -1,9 +1,10 @@
 ---
 title: Node.jsとTypeScriptを使ってTwitterボットを作成した。
-date: '2020-10-18'
+date: '2022-10-18'
 tags: ['node', 'code']
 draft: false
 summary: Example of a markdown file with code blocks and syntax highlighting
+image: /static/images/twitter-node.jpg
 ---
 
 ## はじめに
